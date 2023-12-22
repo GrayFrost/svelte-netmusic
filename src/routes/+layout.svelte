@@ -10,7 +10,9 @@
 
   <main class="flex flex-1">
     <SideBar />
+    <div class="flex-1 h-full">
     <slot />
+    </div>
   </main>
 
   <PlayBar />

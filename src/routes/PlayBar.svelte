@@ -1,1 +1,1 @@
-<div>playbar</div>
+<div class="h-[48px]">playbar</div>

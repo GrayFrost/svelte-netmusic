@@ -1,104 +1,89 @@
 <script lang="ts">
-	import { spring } from 'svelte/motion';
-	import { Button } from "$lib/components/ui/button";
+  import { onMount } from 'svelte';
+  import { fetchQrKey, fetchQrCreate, fetchQrCheck, fetchLoginStatus, fetchUserPlayList, fetchPersonalFm, fetchPlaylistTrackAll, fetchSongUrl } from '../../../api/login';
 
-	let count = 0;
+  let key = '';
+  let cookieData = '';
+  let playlistData = [];
+  let personalFMData = {};
+  let testUrl = ''
 
-	const displayed_count = spring();
-	$: displayed_count.set(count);
-	$: offset = modulo($displayed_count, 1);
+  const createQrCode = (url: string) => {
+    const qrcode = new QRCode(document.getElementById("qrcode"), url)
+  };
 
-	function modulo(n: number, m: number) {
-		// handle negative numbers
-		return ((n % m) + m) % m;
-	}
+  const statusCheck = async (key: string) => {
+    const { code, cookie } = await fetchQrCheck({
+      key
+    });
+    if (code === 803) {
+      cookieData = cookie;
+    } else if (code === 801 || code === 802) {
+      setTimeout(() => {
+        statusCheck(key);
+      }, 1000)
+    } else if (code === 800) {
+      alert('二维码过期，请刷新');
+      return;
+    } // 502状态
+    console.log('zzh res check', code);
+    
+  }
+
+  // 登录
+  // const { data } = await fetchQrKey();
+    // const { code, unikey } = data;
+    // const { data: createRes } = await fetchQrCreate({
+    //   key: unikey
+    // });
+    // const { qrurl } = createRes;
+    //createQrCode(qrurl);
+    // statusCheck(unikey);
+
+  onMount(async () => {
+    
+    
+
+    const { data: userInfo } = await fetchLoginStatus();
+    localStorage.setItem('net-music-user-info', JSON.stringify(userInfo.account));
+    const { account: { id } } = userInfo;
+    const res = await fetchUserPlayList({ uid: id, limit: 10});
+    const { playlist } = res;
+    playlistData = playlist;
+    
+    // const fmRes = await fetchPersonalFm();
+    console.log('zzh playlist', playlist);
+    const first = playlist[0];
+    const allRes = await fetchPlaylistTrackAll({
+      id: first.id
+    });
+    const { songs } = allRes;
+    const firstSong = songs[0];
+    const { data } = await fetchSongUrl({
+      id: firstSong.id
+    })
+    const { url } = data[0];
+    testUrl = url;
+  })
 </script>
-
-<div class="counter">
-	<Button variant="outline">Button</Button>
-	<button on:click={() => (count -= 1)} aria-label="Decrease the counter by one">
-		<svg aria-hidden="true" viewBox="0 0 1 1">
-			<path d="M0,0.5 L1,0.5" />
-		</svg>
-	</button>
-
-	<div class="counter-viewport">
-		<div class="counter-digits" style="transform: translate(0, {100 * offset}%)">
-			<strong class="hidden" aria-hidden="true">{Math.floor($displayed_count + 1)}</strong>
-			<strong>{Math.floor($displayed_count)}</strong>
-		</div>
-	</div>
-
-	<button on:click={() => (count += 1)} aria-label="Increase the counter by one">
-		<svg aria-hidden="true" viewBox="0 0 1 1">
-			<path d="M0,0.5 L1,0.5 M0.5,0 L0.5,1" />
-		</svg>
-	</button>
+<div>
+  <h2>个性推荐</h2>
+  <div id="qrcode"></div>
+  <audio
+    src={testUrl}
+    controls
+    autoplay
+    loop
+    muted
+  >
+    浏览器不支持音频播放。
+  </audio> 
+  <ul>
+    {#each playlistData as item}
+      <li style="display: flex">
+        <img src={item.coverImgUrl} style="width: 64px;height: 64px;"/>
+        <span>{item.name}</span>
+      </li>
+    {/each}
+  </ul>
 </div>
-
-<style>
-	.counter {
-		display: flex;
-		border-top: 1px solid rgba(0, 0, 0, 0.1);
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-		margin: 1rem 0;
-	}
-
-	.counter button {
-		width: 2em;
-		padding: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border: 0;
-		background-color: transparent;
-		touch-action: manipulation;
-		font-size: 2rem;
-	}
-
-	.counter button:hover {
-		background-color: var(--color-bg-1);
-	}
-
-	svg {
-		width: 25%;
-		height: 25%;
-	}
-
-	path {
-		vector-effect: non-scaling-stroke;
-		stroke-width: 2px;
-		stroke: #444;
-	}
-
-	.counter-viewport {
-		width: 8em;
-		height: 4em;
-		overflow: hidden;
-		text-align: center;
-		position: relative;
-	}
-
-	.counter-viewport strong {
-		position: absolute;
-		display: flex;
-		width: 100%;
-		height: 100%;
-		font-weight: 400;
-		color: var(--color-theme-1);
-		font-size: 4rem;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.counter-digits {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-	}
-
-	.hidden {
-		top: -100%;
-		user-select: none;
-	}
-</style>
