@@ -1,5 +1,10 @@
 import axios from "./index";
 
+interface IRes<T> {
+  code: number;
+  data: T;
+}
+
 interface IQRKeyRes {
   unikey: string;
 }
@@ -85,5 +90,15 @@ interface ISongUrlParams {
 export const fetchSongUrl = (params: ISongUrlParams) => {
   return axios.get('/song/url', {
     params
+  })
+}
+
+interface IAlbumSublistParams {
+  limit?: number;
+  offset?: number;
+}
+export const fetchAlbumSublist = (params: IAlbumSublistParams = {}) => {
+  return axios.get('/album/sublist', {
+    params,
   })
 }

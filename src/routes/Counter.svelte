@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { fetchQrKey, fetchQrCreate, fetchQrCheck, fetchLoginStatus, fetchUserPlayList, fetchPersonalFm, fetchPlaylistTrackAll, fetchSongUrl } from '../../../api/login';
+  import { fetchQrKey, fetchQrCreate, fetchQrCheck, fetchLoginStatus, fetchUserPlayList, fetchPersonalFm, fetchPlaylistTrackAll, fetchSongUrl } from '../api/login';
 
   let key = '';
   let cookieData = '';

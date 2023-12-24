@@ -4,17 +4,19 @@
   import PlayBar from "./PlayBar.svelte";
   import SideBar from "./SideBar.svelte";
   import Music from '$lib/components/music/index.svelte';
+  // import Counter from "./Counter.svelte";
 </script>
 
-<div class="w-full h-full flex flex-col relative">
+<div class="w-full h-full flex flex-col relative overflow-hidden">
   <Header></Header>
 
-  <main class="flex flex-1">
+  <main class="flex flex-1 overflow-hidden">
     <SideBar />
     <div class="flex-1 h-full">
     <slot />
     </div>
   </main>
-  <Music />
+  <!-- <Counter /> -->
+  <!-- <Music /> -->
   <PlayBar />
 </div>
