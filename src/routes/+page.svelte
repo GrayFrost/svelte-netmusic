@@ -1,5 +1,5 @@
 <script>
-	import Counter from './Counter.svelte';
+
 </script>
 
 <svelte:head>
@@ -7,5 +7,3 @@
 	<meta name="description" content="Netease Music" />
 </svelte:head>
 
-<section>
-</section>
