@@ -19,23 +19,23 @@
   <div class="flex-1 overflow-scroll">
   <ListItem isActive={true}>
     <Music />
-    <a href="/find-music">发现音乐</a>
+    <a href="/find">发现音乐</a>
   </ListItem>
   <ListItem>
     <Radio />
-    <a href="">播客</a>
+    <a href="/podcast">播客</a>
   </ListItem>
   <ListItem>
     <BoomBox />
-    <a href="">私人漫游</a>
+    <a href="/personalize">私人漫游</a>
   </ListItem>
   <ListItem>
     <PlaySquare />
-    <a href="">视频</a>
+    <a href="/video">视频</a>
   </ListItem>
   <ListItem>
     <UsersRound />
-    <a href="">关注</a>
+    <a href="/follow">关注</a>
   </ListItem>
   <div>
     <div>我的音乐</div>

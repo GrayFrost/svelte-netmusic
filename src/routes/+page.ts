@@ -5,5 +5,5 @@ export const prerender = true;
 
 /** @type {import('./$types').PageLoad} */
 export function load() {
-  throw redirect(302, '/find-music/recommend');
+  throw redirect(302, '/find/recommend');
 }
