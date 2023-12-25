@@ -4,9 +4,9 @@
 
 <header class="h-[48px] flex pt-4">
 	<div class="w-[200px]">
-		avatar
+		&lt; &gt;
 	</div>
-	<div class="flex flex-1">
+	<div class="flex flex-1 justify-between">
 		<div class="flex">
 			<a href="/find-music/recommend">个性推荐</a>
 			<a href="/find-music/list">歌单</a>

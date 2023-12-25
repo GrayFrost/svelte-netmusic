@@ -11,12 +11,11 @@
     Star
   } from "lucide-svelte";
   import ListItem from "$components/list-item.svelte";
+  import LoginState from "$components/login-state.svelte";
 </script>
 
 <div class="w-[200px] flex flex-col">
-  <div class="h-16 flex-0">
-    avatar
-  </div>
+  <LoginState />
   <div class="flex-1 overflow-scroll">
   <ListItem isActive={true}>
     <Music />
