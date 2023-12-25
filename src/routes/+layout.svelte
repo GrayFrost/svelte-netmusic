@@ -12,7 +12,7 @@
 
   <main class="flex flex-1 overflow-hidden">
     <SideBar />
-    <div class="flex-1 h-full">
+    <div class="flex-1 h-full overflow-scroll">
     <slot />
     </div>
   </main>

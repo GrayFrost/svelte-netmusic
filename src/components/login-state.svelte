@@ -4,21 +4,38 @@
   import * as Avatar from "$lib/components/ui/avatar";
   import * as Dialog from "$lib/components/ui/dialog";
   import { fetchQrKey, fetchQrCreate, fetchQrCheck, fetchLoginStatus, fetchUserPlayList, fetchPersonalFm, fetchPlaylistTrackAll, fetchSongUrl } from '../api/login';
+  // import storage from '$lib/utils/storage';
 
   let isLogin = false;
   let dialogOpen = false;
-  let imgSrc = 'https://hbimg.b0.upaiyun.com/abe38d8df0470b34a484161886f7c3e45b421663604d-jY2yP8_fw658';
+  let storageData = null;
+  let userInfo = {};
+
+  // const data = storage.get();
+  $: {
+    if (storageData) {
+      isLogin = true;
+      const { profile } = storageData;
+      userInfo = profile;
+    }
+  }
+  
+  
 
   const createQrCode = (url: string) => {
-    const qrcode = new QRCode(document.getElementById("qrcode"), url)
+    new QRCode(document.getElementById("qrcode"), url)
   };
 
   const getLoginInfo = async () => {
     const { data: userInfo } = await fetchLoginStatus();
-    localStorage.setItem('net-music-user-info', JSON.stringify(userInfo.account));
+    // todo storage.set(userInfo);
+    isLogin = true;
   }
 
   const statusCheck = async (key: string) => {
+    if (!dialogOpen) {
+      return;
+    }
     const { code, cookie } = await fetchQrCheck({
       key
     });
@@ -33,14 +50,10 @@
       alert('二维码过期，请刷新');
       return;
     } // 502状态
-    console.log('zzh res check', code);
   }
-
   
 
   const openQrCodeModal = async () => {
-    console.log('zzh clickc');
-    // todo test
     dialogOpen = true;
     const { data } = await fetchQrKey();
     const { code, unikey } = data;
@@ -52,22 +65,32 @@
     createQrCode(qrurl);
     statusCheck(unikey);
   }
+
 </script>
 
 <div class="h-16 flex-0 flex">
-  <div on:click={openQrCodeModal}>
-    <Avatar.Root>
-      <Avatar.Image src={imgSrc} alt="avatar"  />
-    </Avatar.Root>
-  </div>
+  {#if !isLogin}
+    <div on:click={openQrCodeModal}>
+      登录
+    </div>
+  {:else}
+    <div class="flex items-center pl-4">
+      <Avatar.Root>
+        <Avatar.Image src={userInfo.avatarUrl || ''} alt="avatar" />
+      </Avatar.Root>
+      <span class="px-4">{userInfo.nickname || ''}</span>
+    </div>
+  {/if}
   
   <Dialog.Root bind:open={dialogOpen}>
     <Dialog.Trigger>
       
     </Dialog.Trigger>
     <Dialog.Content>
-      <h3>请扫码登录</h3>
-      <div id="qrcode"></div>
+      <div class="flex flex-col">
+        <h3>请扫码登录</h3>
+        <div id="qrcode"></div>
+      </div>
     </Dialog.Content>
   </Dialog.Root>
 </div>
