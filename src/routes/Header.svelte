@@ -3,17 +3,17 @@
 	import { Input } from "$lib/components/ui/input";
 </script>
 
-<header class="h-[48px] flex pt-4">
+<header class="h-[48px] flex pt-4 shadow">
 	<div class="w-[200px]">
 		&lt; &gt;
 	</div>
 	<div class="flex flex-1 justify-between">
-		<div class="flex">
-			<a href="/find/recommend">个性推荐</a>
-			<a href="/find/list">歌单</a>
-			<a href="/find/rank">排行榜</a>
-			<a href="/find/musicians">歌手</a>
-			<a href="/find/latest">最新音乐</a>
+		<div class="flex items-center">
+			<a href="/find/recommend" class="mx-4">个性推荐</a>
+			<a href="/find/list" class="mx-4">歌单</a>
+			<a href="/find/rank" class="mx-4">排行榜</a>
+			<a href="/find/musicians" class="mx-4">歌手</a>
+			<a href="/find/latest" class="mx-4">最新音乐</a>
 		</div>
 		<div class="flex items-center">
 			<Input class="h-8"/>
