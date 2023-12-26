@@ -12,8 +12,8 @@
 
   <main class="flex flex-1 overflow-hidden">
     <SideBar />
-    <div class="flex-1 h-full overflow-scroll">
-    <slot />
+    <div class="flex-1 h-full overflow-scroll dark:bg-netease-gray-3">
+      <slot />
     </div>
   </main>
   <!-- <Counter /> -->

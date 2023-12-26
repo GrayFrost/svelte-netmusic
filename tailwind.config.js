@@ -50,6 +50,9 @@ const config = {
 					foreground: "hsl(var(--card-foreground) / <alpha-value>)"
 				},
 				netease: '#C20C0C',
+				'netease-gray-1': '#202020',
+				'netease-gray-2': '#2d2d2d',
+				'netease-gray-3': '#252525',
 			},
 			borderRadius: {
 				lg: "var(--radius)",

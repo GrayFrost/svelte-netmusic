@@ -14,7 +14,7 @@
   import LoginState from "$components/login-state.svelte";
 </script>
 
-<div class="w-[200px] flex flex-col">
+<div class="w-[200px] flex flex-col dark:bg-netease-gray-1">
   <LoginState />
   <div class="flex-1 overflow-scroll">
   <ListItem isActive={true}>
@@ -41,7 +41,7 @@
     <div>我的音乐</div>
     <ListItem>
       <Heart />
-      我喜欢的音乐
+      <a href="/favorite">我喜欢的音乐</a>
     </ListItem>
     <ListItem>
       <Clock4 />
@@ -49,7 +49,7 @@
     </ListItem>
     <ListItem>
       <Disc3 />
-      我的播放
+      <a href="/my-podcast">我的播客</a>
     </ListItem>
     <ListItem>
       <Star />

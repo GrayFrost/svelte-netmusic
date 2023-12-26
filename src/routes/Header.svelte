@@ -3,7 +3,7 @@
 	import { Input } from "$lib/components/ui/input";
 </script>
 
-<header class="h-[48px] flex pt-4 shadow">
+<header class="h-12 flex dark:bg-netease-gray-2">
 	<div class="w-[200px]">
 		&lt; &gt;
 	</div>

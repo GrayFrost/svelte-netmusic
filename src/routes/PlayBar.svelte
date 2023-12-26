@@ -6,7 +6,7 @@
 </script>
 <div class="h-[50px] flex flex-col">
   <div class="h-0.5 bg-netease"></div>
-  <div class="flex-1 flex justify-between">
+  <div class="flex-1 flex justify-between dark:bg-netease-gray-2">
     <div>
       <img src="" />
       <div>
