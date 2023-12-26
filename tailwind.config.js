@@ -48,7 +48,8 @@ const config = {
 				card: {
 					DEFAULT: "hsl(var(--card) / <alpha-value>)",
 					foreground: "hsl(var(--card-foreground) / <alpha-value>)"
-				}
+				},
+				netease: '#C20C0C',
 			},
 			borderRadius: {
 				lg: "var(--radius)",

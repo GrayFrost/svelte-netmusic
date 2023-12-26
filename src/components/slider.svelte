@@ -77,7 +77,7 @@ $: {
   </div>
   <div class="w-full h-5">
     {#each list as item, index}
-      <span on:mouseover={() => currentIndex = index} class="inline-block w-5 h-0.5 mx-2 my-1 cursor-pointer bg-rose-400"></span>
+      <span on:mouseover={() => currentIndex = index} class="inline-block w-5 h-0.5 mx-2 my-1 cursor-pointer bg-netease"></span>
     {/each}
   </div>
 </div>
