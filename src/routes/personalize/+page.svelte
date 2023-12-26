@@ -16,7 +16,7 @@
 
     avatar = current.artists[0].picUrl;
   }
-  fetchFunc();
+  // fetchFunc();
 </script>
 
 <div>

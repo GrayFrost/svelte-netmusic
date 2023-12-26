@@ -1,4 +1,5 @@
 import { fontFamily } from "tailwindcss/defaultTheme";
+// import Transform3DPlugin from "@xpd/tailwind-3dtransforms";
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -59,6 +60,9 @@ const config = {
 			}
 		}
 	},
+	plugins: [
+		require("@xpd/tailwind-3dtransforms"),
+	]
 };
 
 export default config;
