@@ -1,4 +1,5 @@
 import { fontFamily } from "tailwindcss/defaultTheme";
+const plugin = require('tailwindcss/plugin')
 // import Transform3DPlugin from "@xpd/tailwind-3dtransforms";
 
 /** @type {import('tailwindcss').Config} */
@@ -66,6 +67,16 @@ const config = {
 	},
 	plugins: [
 		require("@xpd/tailwind-3dtransforms"),
+		// plugin(function({ matchUtilities, theme }){
+		// 	matchUtilities({
+		// 		'translate-z': (value) => ({
+		// 			'--tw-translate-z': value,
+		// 			transform: ` translate3d(var(--tw-translate-x), var(--tw-translate-y), var(--tw-translate-z))`
+		// 		}),
+		// 	},{
+		// 		values: theme('translate'), supportsNegativeValues: true
+		// 	})
+		// })
 	]
 };
 

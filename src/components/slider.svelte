@@ -65,15 +65,16 @@ $: {
 
 </script>
 <!--   on:mouseout={play}-->
-<div class="w-full h-[200px] text-center py-3 relative" bind:this={sliderRef} on:mouseover={pause}>
-  <div class="relative w-full h-[180px]">
+<div class="w-full h-[200px] text-center py-3 relative" bind:this={sliderRef} on:mouseover={pause} on:focus role="banner">
+  <!-- todo perspective -->
+  <div class="relative w-full h-[180px]" style="perspective: 800px;">
     {#each list as item, index}
     <div class={index == currentIndex ? activeClass : index == prevIndex ? prevClass :  index == nextIndex ? nextClass : ''}>
         编号{index}
     </div>
     {/each}
-    <span on:click={prev} class="z-21 absolute top-2/4 text-black left-0">&lt;</span>
-    <span on:click={next} class="z-21 absolute top-2/4 text-black right-0">&gt;</span>
+    <span on:click={prev} class="z-21 absolute top-2/4 text-black left-0" role="button">&lt;</span>
+    <span on:click={next} class="z-21 absolute top-2/4 text-black right-0" role="button">&gt;</span>
   </div>
   <div class="w-full h-5">
     {#each list as item, index}
