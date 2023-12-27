@@ -31,3 +31,12 @@ export const fetchPlayListDetail = (params: IFetchPlayListDetailParams) => {
     params
   })
 }
+
+interface IFetchHomepageBlockPageParams {
+  refresh?: boolean
+}
+export const fetchHomepageBlockPage = (params: IFetchHomepageBlockPageParams = {}) => {
+  return axios.get("/homepage/block/page", {
+    params
+  })
+}

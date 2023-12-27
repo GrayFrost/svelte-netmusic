@@ -1,5 +1,6 @@
 <script lang="ts">
   import Slider from '$components/slider.svelte';
+  import { fetchHomepageBlockPage } from '$api/video';
 
   let recommends = [1,2,3,4,5, 6, 7,8,9, 10];
   let plays = [1,2,3,4];
@@ -7,6 +8,13 @@
   let mvs = [1,2];
   let podcasts = [1,2,3,4,5,6];
   let lives = [1,2,3,4];
+
+  async function getData() {
+    const res = await fetchHomepageBlockPage();
+    console.log('zzh res', res);
+  }
+
+  // getData();
 </script>
 
 <div>

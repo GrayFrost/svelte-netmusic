@@ -2,7 +2,14 @@
   import { onMount, onDestroy } from "svelte";
   import { twMerge } from "tailwind-merge";
   let sliderRef;
-  let list = [1, 2, 3, 4, 5];
+  let list = [
+    "http://p1.music.126.net/W-qheDkC3VblVQ9eCW-3tA==/109951169213593076.jpg", 
+    "http://p1.music.126.net/KeMSuBZ3-0o3SDfAukYwuw==/109951169213598097.jpg", 
+    "http://p1.music.126.net/ziAmt8Gh2nlu1ke8_CctTg==/109951169213632412.jpg", 
+    "http://p1.music.126.net/wSYgirEmDVvboe8aHU5gcQ==/109951169213661676.jpg",
+    "http://p1.music.126.net/I4q3iUCriQdKxawOiKZLrA==/109951169213662710.jpg",
+    "http://p1.music.126.net/1vu_Zl4I-Qfic47h-y0pzw==/109951169213671073.jpg"
+  ];
   let currentIndex = 0;
   let autoPlay = true;
   let timer: number;
@@ -44,11 +51,13 @@
   let nextClass: string;
   let prevIndex: number;
   let nextIndex: number;
+  const common: string =
+      "absolute top-0 left-1/2 w-8/12 h-full transition-all duration-500 bg-sky-100 bg-no-repeat transform -translate-x-1/2 -translate-z-20 z-1 text-black rounded";
+      
   $: {
     nextIndex = currentIndex === list.length - 1 ? 0 : currentIndex + 1;
     prevIndex = currentIndex === 0 ? list.length - 1 : currentIndex - 1;
-    const common =
-      "absolute top-0 left-1/2 w-8/12 h-full transition-all duration-500 bg-sky-100 bg-no-repeat transform -translate-x-1/2 -translate-z-20 z-1 text-black rounded";
+    
     activeClass = twMerge(common, "z-20 -translate-x-1/2 translate-z-0");
     prevClass = twMerge(
       common,
@@ -79,9 +88,9 @@
             ? prevClass
             : index == nextIndex
               ? nextClass
-              : ""}
+              : common}
       >
-        编号{index}
+        <img src={item} class="w-full h-full" />
       </div>
     {/each}
     <span
