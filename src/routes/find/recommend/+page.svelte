@@ -27,7 +27,7 @@
     <h3>独家放送</h3>
     <div class="grid grid-cols-4 gap-4">
       {#each plays as playItem, index}
-        <div class="bg-slate-500 rounded pb-[50%]">
+        <div class="bg-slate-500 rounded h-0 pb-[50%]">
           独家放送{index}
         </div>
       {/each}
@@ -52,7 +52,7 @@
     <h3>推荐MV</h3>
     <div class="grid grid-cols-4 gap-4">
       {#each mvs as mvItem, index}
-        <div class="rounded bg-slate-800 pb-[50%] cursor-pointer">mv{index}</div>
+        <div class="rounded bg-slate-800 h-0 pb-[50%] cursor-pointer">mv{index}</div>
       {/each}
     </div>
   </section>
