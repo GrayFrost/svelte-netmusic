@@ -47,7 +47,7 @@ let nextIndex: number;
 $: {
   nextIndex = currentIndex === list.length - 1 ? 0 : currentIndex + 1;
   prevIndex = currentIndex === 0 ? list.length - 1 : currentIndex - 1;
-  const common = 'absolute top-0 left-1/2 w-8/12 h-full transition-all bg-sky-100 bg-no-repeat transform -translate-x-1/2 -translate-z-20 z-1 text-black rounded';
+  const common = 'absolute top-0 left-1/2 w-8/12 h-full transition-all duration-500 bg-sky-100 bg-no-repeat transform -translate-x-1/2 -translate-z-20 z-1 text-black rounded';
   activeClass = twMerge(
     common,
     'z-20 -translate-x-1/2 translate-z-0'
