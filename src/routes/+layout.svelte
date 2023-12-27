@@ -3,7 +3,6 @@
   import Header from "./Header.svelte";
   import PlayBar from "./PlayBar.svelte";
   import SideBar from "./SideBar.svelte";
-  import Music from '$lib/components/music/index.svelte';
   // import Counter from "./Counter.svelte";
 </script>
 
@@ -17,6 +16,5 @@
     </div>
   </main>
   <!-- <Counter /> -->
-  <!-- <Music /> -->
   <PlayBar />
 </div>

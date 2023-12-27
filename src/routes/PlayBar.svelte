@@ -3,11 +3,17 @@
     Pause,
     Play
   } from "lucide-svelte";
+  import Playing from '$components/playing.svelte';
+  import { showPlayingPage } from '../store/index'
+
+  function toggle() {
+    $showPlayingPage = !$showPlayingPage
+  }
 </script>
 <div class="h-[50px] flex flex-col">
   <div class="h-0.5 bg-netease"></div>
   <div class="flex-1 flex justify-between dark:bg-netease-gray-2">
-    <div>
+    <div class="flex" on:click={toggle}>
       <img src="" />
       <div>
         <div>标题</div>
@@ -23,3 +29,5 @@
     </div>
   </div>
 </div>
+
+<Playing />
