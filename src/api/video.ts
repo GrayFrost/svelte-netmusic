@@ -17,3 +17,17 @@ export const fetchPersonalizedMv = () => {
 export const fetchPersonalFm = () => {
   return axios.get("/personal_fm")
 }
+
+export const fetchTopList = () => {
+  return axios.get("/toplist");
+}
+
+interface IFetchPlayListDetailParams {
+  id: number;
+  s?: number;
+}
+export const fetchPlayListDetail = (params: IFetchPlayListDetailParams) => {
+  return axios.get("/playlist/detail", {
+    params
+  })
+}
